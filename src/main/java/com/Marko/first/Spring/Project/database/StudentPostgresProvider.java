@@ -29,19 +29,16 @@ public class StudentPostgresProvider implements StudentDao {
 
     @Override
     public void removeStudent(UUID studentId) {
-
         database.remove(studentId);
     }
 
     @Override
     public void updateStudent(UUID studentId, Student student) {
-
         database.put(studentId, student);
     }
 
     @Override
     public void insertStudent(UUID studentId, Student student) {
-
         database.put(studentId, student);
     }
 }

@@ -11,14 +11,14 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/students")
-public class StudentResource {
+public class StudentController {
 
     private final StudentService studentService;
 
     @Autowired
-    public StudentResource(StudentService studentService) {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
-    }//rename to StudentController
+    }
 
     @RequestMapping(
             method = RequestMethod.GET,
@@ -26,6 +26,15 @@ public class StudentResource {
     )
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            path = "{StudentId}"
+    )
+    public Student getStudentBuId(@PathVariable("StudentId") UUID studentId) {
+        return studentService.getStudentById(studentId);
     }
 
     @RequestMapping(
@@ -40,8 +49,8 @@ public class StudentResource {
             method = RequestMethod.DELETE,
             path = "{studentId}"
     )
-    public void removeStudent(@PathVariable("studentId") UUID student) {
-        studentService.deleteStudentById(student);
+    public void removeStudent(@PathVariable("studentId") UUID studentId) {
+        studentService.deleteStudentById(studentId);
 
     }
 
@@ -50,7 +59,7 @@ public class StudentResource {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             path = "{studentId}"
     )
-    public void updateStudentById(@RequestBody Student student, @PathVariable("studentId") UUID studentId) {
+    public void updateStudentById(@PathVariable("studentId") UUID studentId, @RequestBody Student student) {
         studentService.updateStudent(studentId, student);
     }
 

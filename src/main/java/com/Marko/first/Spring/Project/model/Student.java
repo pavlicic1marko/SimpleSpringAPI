@@ -4,15 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.UUID;
 
-//@Data
-//TODO FIND LOMBOK DEPENDANCY
 public class Student {
     public static boolean get;
-    public UUID id;
-    public String firstName;
-    public String lastName;
-    public String email;
-    public Integer age;
+    private UUID id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private Integer age;
 
     public Student(@JsonProperty("id") UUID id, @JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName, @JsonProperty("email") String email, @JsonProperty("age") Integer age) {
         this.id = id;
